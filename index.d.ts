@@ -243,39 +243,39 @@ export class Gauge<T extends string> {
 	 * @param labels Object with label keys and values
 	 * @param value The value to increment with
 	 */
-	inc(labels: LabelValues<T>, value?: number): void;
+	inc(labels: LabelValues<T>, value?: number | bigint): void;
 
 	/**
 	 * Increment gauge
 	 * @param value The value to increment with
 	 */
-	inc(value?: number): void;
+	inc(value?: number | bigint): void;
 
 	/**
 	 * Decrement gauge
 	 * @param labels Object with label keys and values
 	 * @param value Value to decrement with
 	 */
-	dec(labels: LabelValues<T>, value?: number): void;
+	dec(labels: LabelValues<T>, value?: number | bigint): void;
 
 	/**
 	 * Decrement gauge
 	 * @param value The value to decrement with
 	 */
-	dec(value?: number): void;
+	dec(value?: number | bigint): void;
 
 	/**
 	 * Set gauge value for labels
 	 * @param labels Object with label keys and values
 	 * @param value The value to set
 	 */
-	set(labels: LabelValues<T>, value: number): void;
+	set(labels: LabelValues<T>, value: number | bigint): void;
 
 	/**
 	 * Set gauge value
 	 * @param value The value to set
 	 */
-	set(value: number): void;
+	set(value: number | bigint): void;
 
 	/**
 	 * Set gauge value to current epoch time in ms
@@ -330,19 +330,19 @@ export namespace Gauge {
 		 * Increment gauge with value
 		 * @param value The value to increment with
 		 */
-		inc(value?: number): void;
+		inc(value?: number | bigint): void;
 
 		/**
 		 * Decrement with value
 		 * @param value The value to decrement with
 		 */
-		dec(value?: number): void;
+		dec(value?: number | bigint): void;
 
 		/**
 		 * Set gauges value
 		 * @param value The value to set
 		 */
-		set(value: number): void;
+		set(value: number | bigint): void;
 
 		/**
 		 * Set gauge value to current epoch time in ms
@@ -378,13 +378,13 @@ export class Histogram<T extends string> {
 	 * Observe value
 	 * @param value The value to observe
 	 */
-	observe(value: number): void;
+	observe(value: number | bigint): void;
 	/**
 	 * Observe value for given labels
 	 * @param labels Object with label keys and values
 	 * @param value The value to observe
 	 */
-	observe(labels: LabelValues<T>, value: number): void;
+	observe(labels: LabelValues<T>, value: number | bigint): void;
 
 	/**
 	 * Start a timer. Calling the returned function will observe the duration in
@@ -571,7 +571,7 @@ export class Pushgateway {
 	 */
 	pushAdd(
 		params: Pushgateway.Parameters,
-	): Promise<{ resp?: unknown, body?: unknown }>;
+	): Promise<{ resp?: unknown; body?: unknown }>;
 
 	/**
 	 * Overwrite all metric (using PUT to Pushgateway)
@@ -579,7 +579,7 @@ export class Pushgateway {
 	 */
 	push(
 		params: Pushgateway.Parameters,
-	): Promise<{ resp?: unknown, body?: unknown }>;
+	): Promise<{ resp?: unknown; body?: unknown }>;
 
 	/**
 	 * Delete all metrics for jobName
@@ -587,7 +587,7 @@ export class Pushgateway {
 	 */
 	delete(
 		params: Pushgateway.Parameters,
-	): Promise<{ resp?: unknown, body?: unknown }>;
+	): Promise<{ resp?: unknown; body?: unknown }>;
 }
 
 export namespace Pushgateway {

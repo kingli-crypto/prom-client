@@ -17,6 +17,11 @@ describe('gauge', () => {
 				instance.set(10);
 			});
 
+			it('should be able to set BigInt', () => {
+				instance.set(BigInt('4649494949494949494949'));
+				expectValue(BigInt('4649494949494949494949'));
+			});
+
 			it('should set a gauge to provided value', async () => {
 				await expectValue(10);
 			});
@@ -77,6 +82,11 @@ describe('gauge', () => {
 				expect(fn).toThrowErrorMatchingSnapshot();
 			});
 
+			it('should allow BigInt as a value', () => {
+				instance.set(BigInt('2459438294393290143'));
+				expectValue(BigInt('2459438294393290143'));
+			});
+
 			it('should init to 0', async () => {
 				instance = new Gauge({
 					name: 'init_gauge',
@@ -97,6 +107,10 @@ describe('gauge', () => {
 				it('should be able to increment', async () => {
 					instance.labels('200').inc();
 					await expectValue(21);
+				});
+				it('should be able to set BigInt value', () => {
+					instance.labels('200').set(BigInt('33999490382192109391902'));
+					expectValue(BigInt('33999490382192109391902'));
 				});
 				it('should be able to decrement', async () => {
 					instance.labels('200').dec();
